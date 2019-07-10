@@ -1,29 +1,45 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9"
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9 http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd">
+
+
 	<changeSet author="pereirafrederic" id="1">
-		<createTable tableName="utilisateur" remarks="utilisateur de l'appllication">
-			<column name="id" type="number(18,0)">
+		<dropTable tableName="utilisateur" schemaName="public"
+			cascadeConstraints="true" />
+	</changeSet>
+	<changeSet author="pereirafrederic" id="2">
+		<createTable tableName="utilisateur"
+			remarks="utilisateur de l'appllication">
+			<column name="id" type="numeric(18)">
 				<constraints nullable="false" primaryKey="true"
 					primaryKeyName="utilisateur_PK" />
 			</column>
-			<column name="pseudo" type="varchar2(50)" remarks="pseudo d'un utilisateur">
+			<column name="pseudo" type="VARCHAR(50)"
+				remarks="pseudo d'un utilisateur">
 				<constraints nullable="false" />
 			</column>
-			<column name="mot_passe" type="varchar2(30)" remarks="mot de passe d'un utilisateur">
+			<column name="email" type="VARCHAR(50)"
+				remarks="email d'un utilisateur">
 				<constraints nullable="false" />
 			</column>
-			<column name="mot_passe" type="varchar2(30)"
+			<column name="mot_passe" type="VARCHAR(30)"
+				remarks="mot de passe d'un utilisateur">
+				<constraints nullable="false" />
+			</column>
+			<column name="date_inscription" type="date"
 				remarks="date d'inscription d'un utilisateur">
 				<constraints nullable="false" />
 			</column>
 
 		</createTable>
-		<addUniqueConstraint constraintName="utilisateur_uk1"
-			columnNames="pseudo" tableName="utilisateur" />
-		<addUniqueConstraint constraintName="utilisateur_uk2"
-			columnNames="email" tableName="utilisateur" />
+		<addUniqueConstraint
+			constraintName="utilisateur_uk1" columnNames="pseudo"
+			tableName="utilisateur" />
+		<addUniqueConstraint
+			constraintName="utilisateur_uk2" columnNames="email"
+			tableName="utilisateur" />
 		<createSequence sequenceName="utilisateur_seq" />
 	</changeSet>
 

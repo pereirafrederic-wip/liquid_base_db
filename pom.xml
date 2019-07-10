@@ -71,10 +71,14 @@
 			<artifactId>jaxb-api</artifactId>
 			<version>2.3.0</version>
 		</dependency>
-		<dependency>
-			<groupId>org.liquibase</groupId>
-			<artifactId>liquibase-core</artifactId>
-		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/org.liquibase/liquibase-core -->
+<dependency>
+    <groupId>org.liquibase</groupId>
+    <artifactId>liquibase-core</artifactId>
+    <version>1.9.5</version>
+</dependency>
+		
 
 <!-- validation mail -->
 <dependency>
@@ -107,35 +111,6 @@
 					</annotationProcessor>
 				</configuration>
 			</plugin>
-			<plugin>
-				<groupId>org.liquibase</groupId>
-				<artifactId>liquibase-maven-plugin</artifactId>
-				<configuration>
-					<promptOnNonLocalDatabase>true</promptOnNonLocalDatabase>
-					<changeLogFile>${project.build.directory}/classes/changelog/db.changelog-master.xml</changeLogFile>
-				</configuration>
-			</plugin>
 		</plugins>
 	</build>
-	<profiles>
-		<profile>
-			<id>migration-developer</id>
-			<activation>
-				<file>
-					<exists>${user.home}/db-${user.name}.properties</exists>
-				</file>
-			</activation>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.liquibase</groupId>
-						<artifactId>liquibase-maven-plugin</artifactId>
-						<configuration>
-							<propertyFile>${user.home}/db-${user.name}.properties</propertyFile>
-						</configuration>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
 </project>

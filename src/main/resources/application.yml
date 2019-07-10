@@ -1,5 +1,5 @@
 server: 
-  port: 9001
+  port: 9002
 spring: 
   datasource: 
     ddl-auto: create-drop
@@ -7,13 +7,17 @@ spring:
     driverClassName: org.postgresql.Driver
     password: s3cret
     platform: postgresql
-    url: "jdbc:postgresql://localhost:5432/storyline"
+    url: "jdbc:postgresql://localhost:5432/alfred?createDatabaseIfNotExist=true"
     username: docker
     profile: dev
   jpa:
-    database-platform:org.hibernate.dialect.PostgreSQLDialect
-  hibernate:
-    dialect:org.hibernate.dialect.PostgreSQLDialect  
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    open-in-view: false
+    generate-ddl: false
 
 
 # LIQUIBASE
@@ -22,6 +26,7 @@ liquibase:
   check-change-log-location:true
   contexts:dev
   drop-first=false
+  url=jdbc:postgresql://localhost:5432/alfred?createDatabaseIfNotExist=true
   enabled=true
   user=docker
   password=s3cret

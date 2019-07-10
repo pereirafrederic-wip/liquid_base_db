@@ -4,7 +4,7 @@ services:
     build: 
       context: ./postgres
       dockerfile: Dockerfile
-    container_name: storyline-postgres
+    container_name: liquidbase-postgres
     ports:
       - "5432:5432"
 
