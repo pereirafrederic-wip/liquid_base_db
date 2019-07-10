@@ -1,0 +1,27 @@
+server: 
+  port: 9001
+spring: 
+  datasource: 
+    ddl-auto: create-drop
+    driver-class-name: org.postgresql.Driver
+    driverClassName: org.postgresql.Driver
+    password: s3cret
+    platform: postgresql
+    url: "jdbc:postgresql://localhost:5432/storyline"
+    username: docker
+    profile: dev
+  jpa:
+    database-platform:org.hibernate.dialect.PostgreSQLDialect
+  hibernate:
+    dialect:org.hibernate.dialect.PostgreSQLDialect  
+
+
+# LIQUIBASE
+liquibase:
+  change-log=classpath:/db/changelog/db.changelog-master.yaml
+  check-change-log-location:true
+  contexts:dev
+  drop-first=false
+  enabled=true
+  user=docker
+  password=s3cret
